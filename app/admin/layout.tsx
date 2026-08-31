@@ -8,6 +8,8 @@ import {
   LayoutDashboard,
   Users,
   BookOpen,
+  FileQuestion,
+  Video,
   LogOut,
   ShieldCheck,
 } from "lucide-react";
@@ -17,6 +19,8 @@ const NAV = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard },
   { href: "/admin/students", label: "Students", icon: Users },
   { href: "/admin/courses", label: "Courses", icon: BookOpen },
+  { href: "/admin/exams", label: "Exam papers", icon: FileQuestion },
+  { href: "/admin/videos", label: "Video tutorials", icon: Video },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

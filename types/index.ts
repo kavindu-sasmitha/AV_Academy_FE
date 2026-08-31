@@ -48,3 +48,37 @@ export interface Enrollment {
   notes?: string;
   createdAt?: string;
 }
+
+// --- Exam papers (practice MCQ tests) ---
+
+export interface ExamQuestion {
+  questionText: string;
+  imageUrl?: string;
+  options: string[];
+  correctOptionIndex?: number; // only sent when admin creates/edits a paper
+}
+
+export interface ExamPaper {
+  _id: string;
+  title: string;
+  questions: ExamQuestion[];
+  createdAt?: string;
+}
+
+export interface ExamResult {
+  score: number;
+  passed: boolean;
+}
+
+// --- Video tutorials ---
+
+export type VideoCategory = "PRACTICAL" | "THEORY" | "ROAD_RULES";
+
+export interface VideoTutorial {
+  _id: string;
+  title: string;
+  description?: string;
+  videoUrl: string;
+  category: VideoCategory;
+  createdAt?: string;
+}

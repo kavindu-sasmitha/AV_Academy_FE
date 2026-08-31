@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Users, BookOpen, LogOut } from "lucide-react";
+import { LayoutDashboard, Users, BookOpen, FileQuestion, Video, LogOut } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 const LINKS = [
   { href: "/admin", label: "Pending requests", icon: LayoutDashboard },
   { href: "/admin/students", label: "Search students", icon: Users },
   { href: "/admin/courses", label: "Courses", icon: BookOpen },
+  { href: "/admin/exams", label: "Exam papers", icon: FileQuestion },
+  { href: "/admin/videos", label: "Video tutorials", icon: Video },
 ];
 
 export default function AdminSidebar() {

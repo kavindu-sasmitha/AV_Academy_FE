@@ -1,14 +1,30 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { Clapperboard, LayoutGrid, LogOut, User as UserIcon } from "lucide-react";
+import {
+  Clapperboard,
+  LayoutGrid,
+  FileQuestion,
+  Video,
+  BookOpen,
+  LogOut,
+  User as UserIcon,
+} from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+
+const QUICK_LINKS = [
+  { href: "/dashboard", label: "My courses", icon: LayoutGrid },
+  { href: "/dashboard/exams", label: "Exam papers", icon: FileQuestion },
+  { href: "/dashboard/videos", label: "Video tutorials", icon: Video },
+  { href: "/dashboard/study-guide", label: "Study guide", icon: BookOpen },
+];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { user, loading, logout } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (loading) return;
@@ -53,14 +69,22 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </button>
           </div>
         </div>
-        <div className="mx-auto max-w-6xl px-6 pb-3">
-          <Link
-            href="/dashboard"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-teal"
-          >
-            <LayoutGrid size={13} />
-            My courses
-          </Link>
+        <div className="mx-auto flex max-w-6xl flex-wrap gap-x-5 gap-y-2 px-6 pb-3">
+          {QUICK_LINKS.map(({ href, label, icon: Icon }) => {
+            const isActive = pathname === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`inline-flex items-center gap-1.5 text-xs font-medium transition-colors ${
+                  isActive ? "text-teal" : "text-mist hover:text-teal"
+                }`}
+              >
+                <Icon size={13} />
+                {label}
+              </Link>
+            );
+          })}
         </div>
       </header>
 
